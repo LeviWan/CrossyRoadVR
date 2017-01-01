@@ -28,13 +28,7 @@ public class Player : MonoBehaviour
 
     private void PullJumpTrigger()
     {
-        //沿着凝视点的方向加力。
-        //rig.AddForce(GazePrintHead.Gaze.direction*1000);
-
-        //速度方式
-        //rig.velocity = GazePrintHead.Gaze.direction * 10;
-
-
+    
         RequestJump();
 
 

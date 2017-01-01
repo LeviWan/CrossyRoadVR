@@ -4,7 +4,7 @@ using System.Collections;
 public class VehicleSpawner : MonoBehaviour {
 
     public GameObject[] vehiclePrefabs;
-    public float HeightOffset = 1.0f;
+    public float HeightOffset = 0f;
     public float StartOffset = -10f;
     public float Speed = 5.0f;
     public float Length = 20.0f;
