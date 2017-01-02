@@ -6,12 +6,24 @@ public class Vehicle : MonoBehaviour {
     private float speed = 5.0f;
 
     private float length;
+   
 
+    void OnEnable()
+    {
+        
+        Init();
+    }
+   public void Init()
+    {
+        
+       
+        StartCoroutine(ReturnToPool());
+    }
 
 	// Use this for initialization
 	void Start () {
-        float lifeTime = length / speed;
-        Destroy(gameObject,lifeTime);
+        
+        //Destroy(gameObject,lifeTime);
 	
 	}
 	
@@ -26,5 +38,11 @@ public class Vehicle : MonoBehaviour {
     {
         this.speed = speed;
         this.length = Length;
+    }
+    IEnumerator ReturnToPool()
+    {
+         float lifeTime = length / speed;
+        yield return new WaitForSeconds(12f);
+        ObjectPool.instance.SaveInPool(this.gameObject);
     }
 }

@@ -73,10 +73,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    void DropOnFloor()
+    {
+        if (this.transform.position.y<0.0f)
+        {
+            GameState.instance.isGameOver = true;
+        }
+    }
+
 
 
     void Update()
     {
+        DropOnFloor();
         if (GameState.instance.isGameOver)
         {
             rig.isKinematic = true;

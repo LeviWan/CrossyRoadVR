@@ -13,13 +13,26 @@ public class VehicleSpawner : MonoBehaviour {
         StartCoroutine(Spawn());
 	}
 
+    //void CreateVehicle()
+    //{
+       
+    //    int vehiclePrefabsIndex=Random.Range(0, vehiclePrefabs.Length);
+
+    //    GameObject vehicleObj = Instantiate(vehiclePrefabs[vehiclePrefabsIndex]);
+
+    //    vehicleObj.transform.position = GetPositionOffset();
+    //    vehicleObj.transform.parent = transform;
+    //    Vehicle vehicle = vehicleObj.GetComponent<Vehicle>();
+    //    vehicle.SetPath(Speed, Length);
+    //}
     void CreateVehicle()
     {
-       
-        int vehiclePrefabsIndex=Random.Range(0, vehiclePrefabs.Length);
 
-        GameObject vehicleObj = Instantiate(vehiclePrefabs[vehiclePrefabsIndex]);
+        int vehiclePrefabsIndex = Random.Range(0, vehiclePrefabs.Length);
 
+       // GameObject vehicleObj = Instantiate(vehiclePrefabs[vehiclePrefabsIndex]);
+        Quaternion quaternion = Quaternion.Euler(new Vector3(0,90,0));
+        GameObject vehicleObj = ObjectPool.instance.GetInObjectPool(vehiclePrefabs[vehiclePrefabsIndex].name, GetPositionOffset(), quaternion) as GameObject;
         vehicleObj.transform.position = GetPositionOffset();
         vehicleObj.transform.parent = transform;
         Vehicle vehicle = vehicleObj.GetComponent<Vehicle>();

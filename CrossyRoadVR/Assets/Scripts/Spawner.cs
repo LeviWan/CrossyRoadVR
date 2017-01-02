@@ -19,16 +19,30 @@ public class Spawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        //float forwardPosition = player.transform.position.z;
+        //while (forwardPosition+SpawnHorizon>NextLaneOffset)
+        //{
+        //    int randomLaneIndex = Random.Range(0, LanePrefabs.Length);
+        //    GameObject lane = LanePrefabs[randomLaneIndex];
+        //    Vector3 NextLanePosition = NextLaneOffset * Vector3.forward;
+        //   GameObject NewLaneObject= Instantiate(lane,NextLanePosition,Quaternion.identity) as GameObject;
+        //   NewLaneObject.transform.parent = SpawnerPosition;
+        //    NextLaneOffset += LaneWidth;
+        //}
+
+
         float forwardPosition = player.transform.position.z;
-        while (forwardPosition+SpawnHorizon>NextLaneOffset)
+        while (forwardPosition + SpawnHorizon > NextLaneOffset)
         {
             int randomLaneIndex = Random.Range(0, LanePrefabs.Length);
             GameObject lane = LanePrefabs[randomLaneIndex];
             Vector3 NextLanePosition = NextLaneOffset * Vector3.forward;
-           GameObject NewLaneObject= Instantiate(lane,NextLanePosition,Quaternion.identity) as GameObject;
-           NewLaneObject.transform.parent = SpawnerPosition;
+            GameObject NewLaneObject = ObjectPool.instance.GetInObjectPool(lane.name, NextLanePosition, Quaternion.identity) as GameObject;
+            NewLaneObject.transform.parent = SpawnerPosition;
             NextLaneOffset += LaneWidth;
         }
-	
-	}
+
+
+
+    }
 }
